@@ -1,0 +1,175 @@
+﻿html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    margin-bottom: 100px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+#createBtn, #listBtn {
+    font-size: large;
+    color: white;
+    height: 250px;
+    width: 250px;
+    background-color: dodgerblue;
+    margin-right: 25px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+
+    -webkit-transition: all 1s ease;
+     -moz-transition: all 1s ease;
+       -o-transition: all 1s ease;
+          transition: all 1s ease;
+}
+
+#createBtn:hover, #listBtn:hover {
+    height: 265px;
+    width: 265px;
+    padding-left: 50px;
+}
+
+
+.glyphicon {
+    color: white;
+    font-size: 100px;
+    padding: 50px 50px 30px 50px;
+}
+
+
+#reportHeader {
+    padding-left: 25px;
+    margin-top: 5px;
+}
+
+.panel {
+    margin-top: 45px;
+    padding-bottom: 10px;
+}
+
+
+.btn-primary {
+    background-color: dodgerblue;
+}
+
+
+#backToListBtn {
+    padding-top: 35px;
+}
+
+.expRepBtn {
+    margin-top: 60px;
+    margin-right: 20px;
+    min-width: 85px;
+}
+
+.lineItemBtn {
+    margin-top: 10px;
+    margin-right: 15px;
+    min-width: 85px;
+}
+
+.navbar-inverse {
+    background-color: white;
+    border-color: white;
+}
+
+.navbar-toggle {
+    background-color: #999999;
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: transparent;
+}
+
+.navbar-nav > li {
+    padding-top: 20px;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+    color: black;
+}
+
+.navbar-inverse .navbar-brand:hover {
+    color: black;
+}
+
+#modalContainer {
+         width: 1000px;
+         margin: 100px auto;
+         max-height: 320px;
+         background-color: white;
+         padding: 30px;
+}
+
+.modal-header {
+    padding-bottom: 0px;
+}
+
+.input-validation-error {
+        border: 1px solid #ff0000;
+        box-shadow: inset 0px 1px 1px rgba(0,0,0,0.075), 0px 0px 8px rgba(255, 0, 0, 1);
+    }
+
+body.modal-open .datepicker {
+    z-index: 1151;
+}
+
+.form-control {
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+label {
+    margin-top: 25px;
+}
+
+#site-title {
+    margin-top: 75px;
+    margin-bottom: 10px;
+}
+
+#site-subtitle {
+    margin-bottom: 50px;
+}
+
+.page-title {
+    margin-bottom: 45px;
+    margin-top: 75px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+}
+
+img {
+    height: 50px;
+    width: 50px;
+}

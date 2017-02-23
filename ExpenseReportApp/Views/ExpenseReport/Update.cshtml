@@ -1,0 +1,79 @@
+﻿@model ExpenseReportApp.Models.ExpenseReportViewModel
+@{
+    ViewBag.Title = "Update";
+}
+
+<div class="panel panel-primary" id="expenseReport">
+    <div class="panel-heading">Update Expense Report</div>
+    <div class="panel-body" id="reportHeader">
+        @using (Html.BeginForm("Update", "ExpenseReport", FormMethod.Post))
+        {
+            @Html.HiddenFor(e => e.ExpenseReport.ExpenseReportID)
+            @Html.HiddenFor(e => e.ExpenseReport.UserID)
+            <div class="row">
+                <div class="col-sm-4">
+                    @Html.Label("First Name *")
+                    @Html.TextBoxFor(e => e.ExpenseReport.FirstName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(e => e.ExpenseReport.FirstName, "", new { @class = "text-danger valMessage" })
+                </div>
+                <div class="col-sm-4">
+                    @Html.Label("Last Name *")
+                    @Html.TextBoxFor(e => e.ExpenseReport.LastName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(e => e.ExpenseReport.LastName, "", new { @class = "text-danger valMessage" })
+                </div>
+                <div class="col-sm-4">
+                    @Html.Label("Company Name *")
+                    @Html.TextBoxFor(e => e.ExpenseReport.CompanyName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(e => e.ExpenseReport.CompanyName, "", new { @class = "text-danger valMessage" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    @Html.Label("Date *")
+                    @Html.TextBoxFor(e => e.ExpenseReport.Date, new { @class = "form-control date", @Value = Model.ExpenseReport.Date.GetValueOrDefault().ToString("d") })
+                    @Html.ValidationMessageFor(e => e.ExpenseReport.Date, "", new { @class = "text-danger valMessage" })
+                </div>
+                <div class="col-sm-4">
+                    @Html.LabelFor(e => e.ExpenseReport.Description)
+                    @Html.TextBoxFor(e => e.ExpenseReport.Description, new { @class = "form-control" })
+                </div>
+                <div class="col-sm-4">
+                    <button class="btn btn-primary expRepBtn">Save</button>
+                </div>
+            </div>
+        }
+    </div>
+    <table class="table" id="reportLineItems">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.LineItems)
+            {
+                <tr>
+                    <td>@item.TimeStamp.Value.ToShortDateString()</td>
+                    <td>@item.Category.CategoryName</td>
+                    <td>$@item.Amount</td>
+                    <td>@item.Description</td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Styles {
+    @Styles.Render("~/Content/bootstrap-datepicker.css")
+}
+
+@section Scripts {   
+    
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/app/app.js"></script>
+    }

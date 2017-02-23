@@ -1,0 +1,54 @@
+﻿@model ExpenseReportApp.Data.LineItem
+<div class="modal-header">
+    <h3>Update Line Item</h3>
+</div>
+
+<div class="modal-body">
+    @using (Html.BeginForm("UpdateLineItem", "ExpenseReport", FormMethod.Post, new { id = "updateLineItemForm" }))
+    {
+        @Html.ValidationSummary(true)
+        <table>
+
+            <tr>
+                <td>
+                    @Html.Label("Date *")
+                    @Html.TextBoxFor(l => l.TimeStamp, new { @class = "form-control date", @Value = Model.TimeStamp.GetValueOrDefault().ToString("d") })
+                </td>
+                <td>
+                    @Html.Label("Category *")
+                    @Html.DropDownListFor(l => l.CategoryID, ViewBag.CategoryID as SelectList, Model.Category.CategoryName, new { @class = "form-control" })
+                </td>
+                <td>
+                    @Html.Label("Amount *")
+                    @Html.TextBoxFor(l => l.Amount, new { @class = "form-control" })
+                </td>
+                <td>
+                    @Html.Label("Description *")
+                    @Html.TextBoxFor(l => l.Description, new { @class = "form-control" })
+                </td>
+                @Html.HiddenFor(l => l.ExpenseReportID)
+                @Html.HiddenFor(l => l.LineItemID)
+
+            </tr>
+
+
+        </table>
+        
+        <input class="btn btn-primary lineItemBtn" value="Save" type="submit" />
+        <button class="btn btn-danger lineItemBtn" data-dismiss="modal">Cancel</button>
+      
+        
+    }
+    
+</div>
+
+@section Styles {
+    @Styles.Render("~/Content/bootstrap-datepicker.css")
+}
+
+@section Scripts {
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/app/app.js"></script>
+}
+
+

@@ -1,0 +1,31 @@
+﻿@model List<ExpenseReportApp.Data.ExpenseReport>
+@{
+    ViewBag.Title = "ViewExpenseReportList";
+}
+
+<h2 class="page-title">My Expense Reports</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Report ID</th>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var rep in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(rep.ExpenseReportID.ToString(), "ViewExpenseReport", "ExpenseReport", new { expReportId = @rep.ExpenseReportID }, null)</td>
+            <td>@rep.Date.Value.ToShortDateString()</td>
+            <td>@rep.FirstName @rep.LastName</td>
+            <td>@rep.Description</td>
+            <td>
+                @Html.ActionLink("Update", "Update", "ExpenseReport", new { expReportId = @rep.ExpenseReportID }, null) |
+                @Html.ActionLink("Delete", "Delete", "ExpenseReport", new { expReportId = @rep.ExpenseReportID }, null)
+            </td>
+        </tr>
+    }
+</table>
+

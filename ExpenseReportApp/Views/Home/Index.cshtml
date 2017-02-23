@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h1 id="site-title">Magenicons</h1>
+<h3 id="site-subtitle">Expense Report Manager</h3>
+
+<div class="row">
+    <a href="@Url.Action("CreateExpenseReport", "ExpenseReport")">
+        <div class="col-sm-4 container-fluid" id="createBtn">
+            <i class="home-page-btn glyphicon glyphicon-pencil"></i>
+            Create New Expense Report
+        </div>
+    </a>
+
+    <a href="@Url.Action("ViewExpenseReportList", "ExpenseReport", new { user = User.Identity.Name })">
+        <div class="col-sm-4 container-fluid" id="listBtn">
+            <i class="home-page-btn glyphicon glyphicon-list"></i>
+            My Reports
+        </div>
+    </a>
+
+</div>
+
+
+

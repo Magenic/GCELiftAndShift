@@ -1,0 +1,95 @@
+﻿@model ExpenseReportApp.Models.ExpenseReportViewModel
+@{
+    ViewBag.Title = "ViewExpenseReport";
+
+}
+
+<div id="backToListBtn">
+    @Html.ActionLink("Back to My Reports List", "ViewExpenseReportList", new { user = User.Identity.Name })
+</div>
+
+<div class="panel panel-primary" id="expenseReport">
+    <div class="panel-heading">Expense Report</div>
+    <div class="panel-body" id="reportHeader">
+        <a href="@Url.Action("Update", "ExpenseReport", new { expReportId = Model.ExpenseReport.ExpenseReportID })" class="pull-right" title="Update Expense Report Header">Update</a>
+
+        <div class="row">
+            <p><b>Name: </b>@Model.ExpenseReport.FirstName @Model.ExpenseReport.LastName</p>
+        </div>
+        <div class="row">
+            <p><b>Company: </b>@Model.ExpenseReport.CompanyName</p>
+        </div>
+        <div class="row">
+            <p><b>Report Date: </b>@Html.DisplayFor(e => e.ExpenseReport.Date, null, new { @Value = Model.ExpenseReport.Date.HasValue ? Model.ExpenseReport.Date.GetValueOrDefault().ToString("d") : String.Empty })</p>
+        </div>
+        <div class="row">
+            <p><b>Description: </b>@Model.ExpenseReport.Description</p>
+        </div>
+    </div>
+
+    <table class="table" id="reportLineItems">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.LineItems)
+            {
+                <tr>
+                    <td>@item.TimeStamp.GetValueOrDefault().ToString("d")</td>
+                    <td>@item.Category.CategoryName</td>
+                    <td>$@item.Amount</td>
+                    <td>@item.Description</td>
+                    <td>
+                        @Html.ActionLink("Update", "UpdateLineItem", "ExpenseReport", new { lineItemId = @item.LineItemID, categoryId = @item.CategoryID }, new { data_target = "#modalContainer", data_toggle = "modal", id = "openModalBtn"}) |
+                        @Html.ActionLink("Delete", "DeleteLineItem", "ExpenseReport", new { lineItemId = @item.LineItemID, expReportId = @item.ExpenseReportID }, null)
+                    </td>
+                </tr>
+            }
+
+            @using (Html.BeginForm("CreateLineItem", "ExpenseReport"))
+            {
+                <tr>
+                    <td>
+                        @Html.TextBoxFor(l => l.LineItem.TimeStamp, new { @class = "form-control date" })
+                        @Html.ValidationMessageFor(l => l.LineItem.TimeStamp, "", new { @class = "text-danger valMessage" })
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(l => l.LineItem.CategoryID, ViewBag.CategoryID as SelectList, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(l => l.LineItem.CategoryID, "", new { @class = "text-danger valMessage" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(l => l.LineItem.Amount, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(l => l.LineItem.Amount, "", new { @class = "text-danger valMessage" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(l => l.LineItem.Description, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(l => l.LineItem.Description, "", new { @class = "text-danger valMessage" })
+                    </td>
+                    @Html.HiddenFor(l => l.LineItem.ExpenseReportID)
+                    <td>
+                        <button class="btn btn-primary lineItemBtn">Save</button>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>
+
+@section Styles {
+    @Styles.Render("~/Content/bootstrap-datepicker.css")
+}
+
+@section Scripts {
+    <script src="~/Scripts/app/updateLineItem.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/app/app.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+}

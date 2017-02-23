@@ -1,0 +1,53 @@
+﻿@model ExpenseReportApp.Data.ExpenseReport
+@{
+    ViewBag.Title = "CreateExpenseReport";
+}
+
+<h2 class="page-title">Create Expense Report</h2>
+@using (Html.BeginForm())
+{
+    
+    <div class="row">
+        <div class="col-sm-4">
+            @Html.Label("First Name *")
+            @Html.TextBoxFor(e => e.FirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(e => e.FirstName, "", new { @class = "text-danger valMessage" })
+        </div>
+        <div class="col-sm-4">
+            @Html.Label("Last Name *")
+            @Html.TextBoxFor(e => e.LastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(e => e.LastName, "", new { @class = "text-danger valMessage" })
+        </div>
+        <div class="col-sm-4">
+            @Html.Label("Company Name *")
+            @Html.TextBoxFor(e => e.CompanyName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(e => e.CompanyName, "", new { @class = "text-danger valMessage" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            @Html.Label("Date *")
+            @Html.TextBoxFor(e => e.Date, new { @class = "form-control date" })
+            @Html.ValidationMessageFor(e => e.Date, "", new { @class = "text-danger valMessage" })
+        </div>
+        <div class="col-sm-4">
+            @Html.LabelFor(e => e.Description)
+            @Html.TextBoxFor(e => e.Description, new { @class = "form-control" })
+        </div>
+        <div class="col-sm-4">
+            <button class="btn btn-primary expRepBtn">Create</button>
+            @Html.ActionLink("Cancel", "Index", "Home", null, new { @class = "btn btn-danger expRepBtn" })
+        </div>
+
+    </div>
+}
+
+
+@section Styles {
+    @Styles.Render("~/Content/bootstrap-datepicker.css")
+}
+
+@section Scripts {
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/app/app.js"></script>
+}
