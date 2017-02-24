@@ -197,14 +197,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="encrypt_connstr.ps1" />
-    <None Include="Properties\PublishProfiles\GCP-IIS-CD.pubxml" />
-    <None Include="Properties\PublishProfiles\GCP-IIS.pubxml" />
-    <None Include="Properties\PublishProfiles\gcp-sql4.pubxml" />
-    <None Include="Properties\PublishProfiles\magcustom-iis.pubxml" />
-    <None Include="Properties\PublishProfiles\magcustom-iis2.pubxml" />
-    <None Include="Properties\PublishProfiles\magcustom-iis3.pubxml" />
-    <None Include="Properties\PublishProfiles\Magenicons-IIS-GCE.pubxml" />
-    <None Include="Properties\PublishProfiles\magenicons-sql4.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -247,6 +239,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
